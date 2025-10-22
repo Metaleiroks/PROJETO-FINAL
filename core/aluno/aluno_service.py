@@ -20,7 +20,7 @@ class AlunoService:
             if aluno.id > 0:
                 return self.repository.atualizar(aluno)
             else:
-                return "ID do aluno pe obrigatório para atualizacão."
+                return "ID do aluno é obrigatório para atualizacão."
         else:
             return None    
         
