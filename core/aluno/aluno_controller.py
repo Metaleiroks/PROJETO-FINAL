@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from core.aluno.aluno_service import AlunoService
 from core.aluno.aluno import Aluno
 from core.autenticacao.autenticacao import autenticacao
+from core.validador.validador import validar_dados
 
 aluno_service = AlunoService()
 
@@ -17,7 +18,15 @@ def listar_alunos():
 @autenticacao
 def adicionar_aluno():
     dados = request.get_json()
+
+    result = validar_dados(dados["cpf"], dados["nome"], dados["idade"])
+    if result != True:
+        return jsonify(result), 400
+        
     obj_aluno = Aluno(id=0, nome=dados["nome"], idade=dados["idade"], cpf=dados["cpf"])
+    print(obj_aluno.nome)
+    print(obj_aluno.cpf)
+    print(obj_aluno.idade)
     aluno = aluno_service.adicionar_aluno(obj_aluno)
     return aluno, 201
     
@@ -41,8 +50,13 @@ def remover_aluno(id):
 
 @aluno_controller.route('/<int:id>', methods=['PUT'])
 @autenticacao
-def atualizar_aluno(id):
+def atualizar_aluno():
     dados = request.get_json()
+
+    result = validar_dados(dados["cpf"], dados["nome"], dados["idade"])
+    if result != True:
+        return jsonify(result), 400
+
     obj_aluno = Aluno(id=dados["id"], nome=dados["nome"], idade=dados["idade"], cpf=dados["cpf"])
     aluno = aluno_service.atualizar_aluno(obj_aluno)
     if aluno:

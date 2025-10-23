@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from core.professor.professor import ProfessorService
+from core.professor.professor_service import ProfessorService
 from core.professor.professor import Professor
 from core.autenticacao.autenticacao import autenticacao
 

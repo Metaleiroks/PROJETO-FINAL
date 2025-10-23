@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from core.materias.materias import MateriasService
+from core.materias.materias_service import MateriasService
 from core.materias.materias import Materias
 from core.autenticacao.autenticacao import autenticacao
 

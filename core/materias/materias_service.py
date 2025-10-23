@@ -1,9 +1,9 @@
-from core.materias.materias_repository import MateriasRepository
+from core.materias.materias_repository import MateriaRepository
 from core.materias.materias import Materias
 
 class MateriasService:
     def __init__(self):
-        self.repository = MateriasRepository()
+        self.repository = MateriaRepository()
 
     def listar_materias(self):    
         return self.repository.listar()

@@ -2,8 +2,8 @@ class Aluno:
     def __init__(self, id=0, nome="", idade=0, cpf=""):
         self.__id = id
         self.__nome = nome
-        self.__idade = 0
-        self.__cpf = ""
+        self.__idade = idade
+        self.__cpf = cpf
         
 
     @property
